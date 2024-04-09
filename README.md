@@ -4,17 +4,17 @@
 Zadanie polega na napisaniu aplikacji pt. "Todo List"
 ## Założenia: 
 
-* aplikacja typu web (ASP.NET) lub desktop (WPF) napisana w języku C#
-    [x] Todo list  zrealizowana jako aplika desktopowa z użyciem WPF
+* aplikacja typu web (ASP.NET) lub desktop (WPF) napisana w języku C# 
+[x] Todo list  zrealizowana jako aplika desktopowa z użyciem WPF
 * aplikacja do składowania informacji powinna wykorzystywać bazę danych i korzystać z technik mapowania obiektowo-relacyjnego (ORM)
-    [x] Zastosowano Entity Framework Core i zapis do lokalnej bazy MsSQL
+[x] Zastosowano Entity Framework Core i zapis do lokalnej bazy MsSQL
 * dodawanie/usuwanie/edycję zadań dla określonego dnia
-    [x] Dodanie możliwości dodawania zadań dla danego dnia, możliwość usuwania i edycję zadań zawartych w
+[x] Dodanie możliwości dodawania zadań dla danego dnia, możliwość usuwania i edycję zadań zawartych w
     bazie danych
 * zmianę dnia dla którego wyświetlane są zadania
-    [x] Dodano element wyboru daty i przycisk Show Task
+[x] Dodano element wyboru daty i przycisk Show Task
 * powiadomienia o zbliżających się zadaniach
-    [x] Przycisk ShowTask pokazuje zadania, ma zaimplementowany mechanizm sprawdzania tasków 
+[x] Przycisk ShowTask pokazuje zadania, ma zaimplementowany mechanizm sprawdzania tasków 
     zaplanowanych na bieżący dzień
 
 ## Instrukcja aplikacji: 
