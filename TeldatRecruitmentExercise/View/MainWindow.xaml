@@ -1,0 +1,112 @@
+﻿<Window x:Class="TeldatRecruitmentExercise.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:TeldatRecruitmentExercise.ViewModel"
+        mc:Ignorable="d"
+        Title="ToDoWindow" Height="600" Width="650">
+
+    <Window.DataContext>
+        <vm:WorkTaskViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="110"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text=" Teldat To Do App" FontWeight="ExtraBlack" FontSize="20"
+                   HorizontalAlignment="Center" Foreground="Green"/>
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="100"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Background="#F0E47E">
+                <TextBlock  FontSize="17" FontWeight="Bold" Text="Date" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+            <DatePicker Grid.Column="1" SelectedDate="{Binding AddDateTime}"></DatePicker>
+
+            <Button Command="{Binding ShowTaskCommand}" Grid.Column="2" FontWeight="Bold"
+                    Background="#F0E47E" Content="Show Tasks">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Background="#8CC58F">
+                <TextBlock  FontSize="17" FontWeight="Bold" Text="Name" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+            
+            <TextBox Text="{Binding Name}" Grid.Column="1"></TextBox>
+
+            <Button Command="{Binding AddTaskCommand}" Grid.Column="2" FontWeight="Bold"
+                    Background="#8CC58F" Content="Add Task" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Button Command="{Binding ShowAllTasksCommand}" FontWeight="Bold"
+                    Background="#A49590" Content="Show All Tasks" Width="100" HorizontalAlignment="Right">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+
+        <ListView Grid.Row="4" ItemsSource="{Binding TasksList}" Background="AliceBlue"
+                  HorizontalContentAlignment="Stretch" IsSynchronizedWithCurrentItem="true">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding Id}" />
+                        <TextBlock Grid.Column="1" Text="{Binding Name}" />
+                        <TextBlock Grid.Column="2" Text="{Binding AddDateTime, StringFormat=dd/MM/yyyy}" />
+                        <Button Command="{Binding DataContext.UpdateTaskCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                        CommandParameter="{Binding}" Grid.Column="3" Content="Update" Background="#74BEE0"/>
+                        <Button Command="{Binding DataContext.DeleteTaskCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
+                        CommandParameter="{Binding}" Grid.Column="4" Content="Delete" Background="#F56459"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Image Grid.Row="5"  Source="/Resource/Teldat.jpg" />
+        
+    </Grid>
+</Window>
