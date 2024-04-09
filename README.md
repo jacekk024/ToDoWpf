@@ -19,7 +19,7 @@ Zadanie polega na napisaniu aplikacji pt. "Todo List"
 
 ## Instrukcja aplikacji: 
 * Do uruchomienia aplikacji konieczne jest .NET 8 i MsSQL Server
-* Przed uruchomieniem aplikacji konieczne jest utworzenie tabeli w bazie danych za pomocą Update-Database
+* Przed uruchomieniem aplikacji konieczne jest utworzenie tabeli w bazie danych za pomocą komendy Update-Database
     * Visual Studio Tools -> Nuget Package Manager -> Package Manager Console -> Update-Database
 * Poniżej przedstawiono grafikę na której ponumerowane są odpowiednie elementy aplikacji:
     1. DatePicker do wybierania daty zadania jaka ma zostać dodana/ wyświetlona
