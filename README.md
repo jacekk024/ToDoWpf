@@ -3,7 +3,7 @@
 # Opis zadania: 
 Zadanie polega na napisaniu aplikacji pt. "Todo List"
 ## Założenia: 
-<
+
 * aplikacja typu web (ASP.NET) lub desktop (WPF) napisana w języku C#
     [x] Todo list  zrealizowana jako aplika desktopowa z użyciem WPF
 * aplikacja do składowania informacji powinna wykorzystywać bazę danych i korzystać z technik mapowania obiektowo-relacyjnego (ORM)
