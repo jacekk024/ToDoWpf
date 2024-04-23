@@ -22,7 +22,7 @@
             <RowDefinition Height="110"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="To Do App" FontWeight="ExtraBlack" FontSize="20"
+        <TextBlock Grid.Row="0" Text="TODO LIST" FontWeight="ExtraBlack" FontSize="20"
             HorizontalAlignment="Center" Foreground="#3294ef"/>
 
         <Grid Grid.Row="1">
@@ -95,7 +95,7 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding Id}" />
+                        <CheckBox IsChecked="{}" Grid.Column="0" />
                         <TextBlock Grid.Column="1" Text="{Binding Name}" />
                         <TextBlock Grid.Column="2" Text="{Binding AddDateTime, StringFormat=dd/MM/yyyy}" />
                         <Button Command="{Binding DataContext.UpdateTaskCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
@@ -107,6 +107,6 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Image Grid.Row="5" Source="/Resource/todo.jpg"/>
+        <Image Grid.Row="5" Source="/Resource/todo.jpg" />
     </Grid>
 </Window>

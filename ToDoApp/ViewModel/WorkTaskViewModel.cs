@@ -62,13 +62,17 @@ namespace ToDoApp.ViewModel
 
         public async void ShowTask(object e)
         {
-                await CheckUpcomingTasks();
-                await RefreshTaskList();
+            await CheckUpcomingTasks();
+            await RefreshTaskList();
         }
 
         public async void ShowAllTasks(object e)
         {
-            if (DbContext.Database.CanConnect())
+            // kiedy czekamy na pobranie pasek pobierania
+            // dodanie serwisu 
+            var canConnect = await DbContext.Database.CanConnectAsync();
+
+            if (canConnect)
             {
                 TasksList.Clear();
                 var list = await DbContext.WorkTasks.ToListAsync();
@@ -108,8 +112,8 @@ namespace ToDoApp.ViewModel
 
         public async void AddTask(object e)
         {
-            if (DbContext.Database.CanConnect()) 
-            { 
+            if (DbContext.Database.CanConnect())
+            {
                 if (Name != null)
                 {
                     DbContext.WorkTasks.Add(new WorkTask()
