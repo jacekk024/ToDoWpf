@@ -1,7 +1,6 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace TeldatRecruitmentExercise.Models
+namespace ToDoApp.Model
 {
     public class WorkTask
     {

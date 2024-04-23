@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel;
-using System.Windows;
 
-namespace TeldatRecruitmentExercise.ViewModel
+namespace ToDoApp.ViewModel
 {
-    public class BaseModel : INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace TeldatRecruitmentExercise.Migrations
+namespace ToDoApp.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration

@@ -3,26 +3,29 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TeldatRecruitmentExercise.Data;
+using ToDoApp.Data;
 
 #nullable disable
 
-namespace TeldatRecruitmentExercise.Migrations
+namespace ToDoApp.Migrations
 {
     [DbContext(typeof(WorkTaskDbContext))]
-    partial class WorkTaskDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240423161331_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.3")
+                .HasAnnotation("ProductVersion", "8.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("TeldatRecruitmentExercise.Models.WorkTask", b =>
+            modelBuilder.Entity("ToDoApp.Model.WorkTask", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

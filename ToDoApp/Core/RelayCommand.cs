@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace TeldatRecruitmentExercise.Core
+namespace ToDoApp.Core
 {
     class RelayCommand : ICommand
     {
