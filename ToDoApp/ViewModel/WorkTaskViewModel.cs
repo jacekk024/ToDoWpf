@@ -60,6 +60,16 @@ namespace ToDoApp.ViewModel
             }
         }
 
+        public bool IsDone
+        {
+            get => Model.IsDone;
+            set
+            {
+                Model.IsDone = value;
+                OnPropertyChanged(nameof(IsDone));
+            }
+        }
+
         public async void ShowTask(object e)
         {
             await CheckUpcomingTasks();

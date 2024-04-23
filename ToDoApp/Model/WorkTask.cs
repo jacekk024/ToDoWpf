@@ -9,5 +9,7 @@ namespace ToDoApp.Model
         public string? Name { get; set; }
         [DataType(DataType.Date)]
         public DateTime AddDateTime { get; set; }
+        public bool IsDone {  get; set; }
+        public string? Description { get; set; }
     }
 }
