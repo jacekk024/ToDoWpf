@@ -19,7 +19,7 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="110"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Text="TODO LIST" FontWeight="ExtraBlack" FontSize="20"
@@ -72,18 +72,11 @@
             </Button>
         </Grid>
 
-        <Grid Grid.Row="3">
-            <Button Command="{Binding ShowAllTasksCommand}" FontWeight="Bold"
-             Background="#A49590" Content="Show All Tasks" Width="100" HorizontalAlignment="Right">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"></Setter>
-                    </Style>
-                </Button.Resources>
-            </Button>
-        </Grid>
 
-        <ListView Grid.Row="4" ItemsSource="{Binding TasksList}" Background="AliceBlue"
+
+
+        
+        <ListView Grid.Row="4" ItemsSource="{Binding Tasks}" Background="AliceBlue"
            HorizontalContentAlignment="Stretch" IsSynchronizedWithCurrentItem="true">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -99,14 +92,42 @@
                         <TextBlock Grid.Column="1" Text="{Binding Name}" />
                         <TextBlock Grid.Column="2" Text="{Binding AddDateTime, StringFormat=dd/MM/yyyy}" />
                         <Button Command="{Binding DataContext.UpdateTaskCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
-                 CommandParameter="{Binding}" Grid.Column="3" Content="Update" Background="#74BEE0"/>
+                            CommandParameter="{Binding}" Grid.Column="3" Content="Update" Background="#74BEE0" Width="75"/>
                         <Button Command="{Binding DataContext.DeleteTaskCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"
-                 CommandParameter="{Binding}" Grid.Column="4" Content="Delete" Background="#F56459"/>
+                            CommandParameter="{Binding}" Grid.Column="4" Content="Delete" Background="#F56459" Width="75"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <Image Grid.Row="5" Source="/Resource/todo.jpg" />
+        <Grid Grid.Row="5" Background="AliceBlue">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Grid.Column="0" Command="{Binding ClearTasksCommand}" FontWeight="Bold"
+             Background="#FFD1D5D6" Content="Clear Panel" Width="100" HorizontalAlignment="Right">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Button Grid.Column="3" Command="{Binding ShowAllTasksCommand}" FontWeight="Bold"
+             Background="#FF2DBAEA" Content="Show All Tasks" Width="100" HorizontalAlignment="Right">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <!--<ProgressBar 
+                 Minimum="0"
+                 Value="{Binding LoadingDataStatus,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
+                 Maximum="100" />-->
+        </Grid>
+
     </Grid>
 </Window>

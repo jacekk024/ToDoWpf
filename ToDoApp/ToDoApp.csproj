@@ -16,7 +16,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
+
   <ItemGroup>
-    <Resource Include="Resource\todo.jpg" />
+    <Folder Include="Resource\" />
   </ItemGroup>
 </Project>

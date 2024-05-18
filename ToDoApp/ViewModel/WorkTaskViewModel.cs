@@ -5,23 +5,37 @@ using ToDoApp.Core;
 using ToDoApp.Data;
 using ToDoApp.Model;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
+using ToDoApp.Services;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
+using System.Windows.Data;
+using Microsoft.VisualBasic;
 
 namespace ToDoApp.ViewModel
 {
     class WorkTaskViewModel : BaseViewModel
     {
+        // TODO zapis zadań do pliku 
+        // Dodanie serwisów 
+        // Dodanie Dto
+        // Dodanie pola opisu zadania 
+        // podkreślenie zadań zrealizowanych 
+        // widok wczytywania danych
+
         private WorkTask Model { get; set; } = new WorkTask();
-        private WorkTaskDbContext DbContext { get; set; }
-        private ObservableCollection<WorkTask> Tasks { get; set; } = new ObservableCollection<WorkTask>();
+        private WorkTaskDbContext DbContext { get; set; } = new WorkTaskDbContext();
+        public ObservableCollection<WorkTask> Tasks { get; set; } = new ObservableCollection<WorkTask>();
+        private readonly ITaskSerive _taskService;
 
         public WorkTaskViewModel()
         {
-            DbContext = new WorkTaskDbContext();
             AddTaskCommand = new RelayCommand(AddTask);
             ShowTaskCommand = new RelayCommand(ShowTask);
             UpdateTaskCommand = new RelayCommand(UpdateTask);
             DeleteTaskCommand = new RelayCommand(DeleteTask);
             ShowAllTasksCommand = new RelayCommand(ShowAllTasks);
+            ClearTasksCommand = new RelayCommand((object e) => Tasks.Clear());
+            _taskService = new TaskService(DbContext);
         }
 
         public ICommand AddTaskCommand { get; set; }
@@ -29,6 +43,7 @@ namespace ToDoApp.ViewModel
         public ICommand UpdateTaskCommand { get; set; }
         public ICommand DeleteTaskCommand { get; set; }
         public ICommand ShowAllTasksCommand { get; set; }
+        public ICommand ClearTasksCommand { get; set; }
 
         public ObservableCollection<WorkTask> TasksList
         {
@@ -42,11 +57,20 @@ namespace ToDoApp.ViewModel
 
         public string Name
         {
-            get => Model.Name;
+            get => Model.Name!;
             set
             {
                 Model.Name = value;
                 OnPropertyChanged(nameof(Name));
+            }
+        }
+        public string Description
+        {
+            get => Model.Description!;
+            set
+            {
+                Model.Description = value;
+                OnPropertyChanged(nameof(Description));
             }
         }
 
@@ -69,7 +93,7 @@ namespace ToDoApp.ViewModel
                 OnPropertyChanged(nameof(IsDone));
             }
         }
-
+   
         public async void ShowTask(object e)
         {
             await CheckUpcomingTasks();
@@ -78,26 +102,20 @@ namespace ToDoApp.ViewModel
 
         public async void ShowAllTasks(object e)
         {
-            // kiedy czekamy na pobranie pasek pobierania
-            // dodanie serwisu 
-            var canConnect = await DbContext.Database.CanConnectAsync();
+            Tasks.Clear();
+            var result = await _taskService.GetAllTasks();
 
-            if (canConnect)
+            foreach (var item in result)
             {
-                TasksList.Clear();
-                var list = await DbContext.WorkTasks.ToListAsync();
-                foreach (var task in list)
-                    Tasks.Add(task);
+                Tasks.Add(item);
             }
-            else
-                MessageBox.Show("Can`t connect to database!");
         }
 
         public async Task RefreshTaskList()
         {
             if (DbContext.Database.CanConnect())
             {
-                TasksList.Clear();
+                Tasks.Clear();
                 var list = await DbContext.WorkTasks.ToListAsync();
                 foreach (var task in list.Where(x => x.AddDateTime.CompareTo(AddDateTime) == 0))
                     Tasks.Add(task);
@@ -122,74 +140,22 @@ namespace ToDoApp.ViewModel
 
         public async void AddTask(object e)
         {
-            if (DbContext.Database.CanConnect())
-            {
-                if (Name != null)
-                {
-                    DbContext.WorkTasks.Add(new WorkTask()
-                    {
-                        Name = Name,
-                        AddDateTime = AddDateTime
-                    });
-                    await DbContext.SaveChangesAsync();
-                    await RefreshTaskList();
-                }
-                else
-                    MessageBox.Show("Insert Name to add element!");
-            }
-            else
-                MessageBox.Show("Can`t connect to database!");
+            await _taskService.CreateTask(Name, AddDateTime);
+            await RefreshTaskList();
+            Name = string.Empty;
         }
 
         public async void UpdateTask(object e)
         {
-            if (DbContext.Database.CanConnect())
-            {
-                if (Name != null)
-                {
-                    WorkTask? tsk = e as WorkTask;
-                    var list = await DbContext.WorkTasks.ToListAsync();
-                    if (tsk != null)
-                    {
-                        var task = list.FirstOrDefault(x => x.Id == tsk.Id);
-
-                        if (task != null)
-                        {
-                            task.Name = Name;
-                            task.AddDateTime = AddDateTime;
-                            await DbContext.SaveChangesAsync();
-                            await RefreshTaskList();
-                        }
-                    }
-                }
-                else
-                    MessageBox.Show("Insert Name to update element!");
-            }
-            else
-                MessageBox.Show("Can`t connect to database!");
+            await _taskService.UpdateTask(e, Name, AddDateTime);
+            await RefreshTaskList();
+            Name = string.Empty;
         }
 
         public async void DeleteTask(object e)
         {
-            if (DbContext.Database.CanConnect())
-            {
-                WorkTask? tsk = e as WorkTask;
-                var list = await DbContext.WorkTasks.ToListAsync();
-                if (tsk != null)
-                {
-                    var task = list.FirstOrDefault(x => x.Id == tsk.Id);
-
-                    if (task != null)
-                    {
-                        DbContext.WorkTasks.Remove(task);
-                        await DbContext.SaveChangesAsync();
-                        await RefreshTaskList();
-                        MessageBox.Show("Element Deleted!");
-                    }
-                }
-            }
-            else
-                MessageBox.Show("Can`t connect to database!");
+            await _taskService.RemoveTask(e);
+            await RefreshTaskList();
         }
     }
 }
