@@ -17,7 +17,6 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
@@ -72,11 +71,7 @@
             </Button>
         </Grid>
 
-
-
-
-        
-        <ListView Grid.Row="4" ItemsSource="{Binding Tasks}" Background="AliceBlue"
+        <ListView Grid.Row="3" ItemsSource="{Binding Tasks}" Background="AliceBlue"
            HorizontalContentAlignment="Stretch" IsSynchronizedWithCurrentItem="true">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -100,7 +95,7 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <Grid Grid.Row="5" Background="AliceBlue">
+        <Grid Grid.Row="4" Background="AliceBlue">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="100"/>
@@ -115,7 +110,7 @@
                 </Button.Resources>
             </Button>
 
-            <Button Grid.Column="3" Command="{Binding ShowAllTasksCommand}" FontWeight="Bold"
+            <Button Grid.Column="1" Command="{Binding ShowAllTasksCommand}" FontWeight="Bold"
              Background="#FF2DBAEA" Content="Show All Tasks" Width="100" HorizontalAlignment="Right">
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -123,11 +118,6 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <!--<ProgressBar 
-                 Minimum="0"
-                 Value="{Binding LoadingDataStatus,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"
-                 Maximum="100" />-->
         </Grid>
-
     </Grid>
 </Window>
