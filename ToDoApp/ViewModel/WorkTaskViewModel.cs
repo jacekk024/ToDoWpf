@@ -64,15 +64,6 @@ namespace ToDoApp.ViewModel
                 OnPropertyChanged(nameof(Name));
             }
         }
-        public string Description
-        {
-            get => Model.Description!;
-            set
-            {
-                Model.Description = value;
-                OnPropertyChanged(nameof(Description));
-            }
-        }
 
         public DateTime AddDateTime
         {

@@ -26,24 +26,26 @@ Zadanie polega na napisaniu aplikacji pt. "Todo List"
 
 2. Pole Name, gdzie ustawiana jest nazwa zadania, jakie chcemy dodać lub zaktualizować
 
-3. Przycisk ShowTasks pokazuje zadania dla wybranego dnia, dodatkowo sprawdza czy są zadania dla dnia bieżącego (podaje ilość)
-
-4. Przycisk Add Task dodaje zadanie do bazy danych (dokonuje sprawdzenia czy jest coś wpisane w polu Name, jeśli nie dostajemy komunikat, 
+3. Przycisk Add Task dodaje zadanie do bazy danych (dokonuje sprawdzenia czy jest coś wpisane w polu Name, jeśli nie dostajemy komunikat, 
 że należy uzupełnić to pole). Po dodaniu zadania, pole jest aktualizowane
 
-5. Przycisk Show All Tasks (Dodatkowy przycisk pomocniczy) pokazuje wszystkie zadania dostępne w bazie
+4. Przycisk ShowTasks pokazuje zadania dla wybranego dnia, dodatkowo sprawdza czy są zadania dla dnia bieżącego (podaje ilość)
 
-6. Przycisk Delete usuwa dane zadanie, i wraca do widoku dla danego dnia (wybranego w DatePicker)
+5. Przycisk Delete usuwa dane zadanie, i wraca do widoku dla danego dnia (wybranego w DatePicker)
 
-7. Przycisk Update aktualizuje nazwe zadania (sprawdzana czy pole Name jest uzupełnione), i wraca do widoku dla danego dnia (wybranego w DatePicker)
+6. Przycisk Update aktualizuje nazwe zadania (sprawdzana czy pole Name jest uzupełnione), i wraca do widoku dla danego dnia (wybranego w DatePicker)
 
-8. Pole wyświetlające datę zadania
+7. Pole wyświetlające datę zadania
 
-9. Pole wyświetlające nazwę zadania
+8. Pole wyświetlające nazwę zadania
 
-10. Pole wyświetlające id zadania
+9. Znacznik ukończenia zadania 
 
-![opis](https://github.com/jacekk024/teldat-recruitment-exercise/assets/45696277/3883e13e-66eb-42ad-bd83-06fee3da9f97)
+10. Przycisk Show All Tasks (Dodatkowy przycisk pomocniczy) pokazuje wszystkie zadania dostępne w bazie
+
+11. Przycisk Clear Panel, usuwający aktualnie wyświetlane zadania w panelu
+
+![2](https://github.com/jacekk024/ToDoWpf/assets/45696277/bd8031d4-2f82-4644-9cf2-a485d4e41681)
 * Poniżej przedstawiono wyświetlanie komunikatu o aktualnym stanie nadchodzących zadań (wyświetlana jest liczba nadchodzących zadań):
-![1](https://github.com/jacekk024/teldat-recruitment-exercise/assets/45696277/df5568f4-0ce8-456b-871f-bd4dd7ebd25f)
+![1](https://github.com/jacekk024/ToDoWpf/assets/45696277/7470233d-e1a1-470a-b4ca-2db5d7cccc05)
 
