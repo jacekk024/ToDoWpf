@@ -1,4 +1,4 @@
-# teldat-recruitment-exercise
+# Aplikacja ToDo 
 
 # Opis zadania: 
 Zadanie polega na napisaniu aplikacji pt. "Todo List"
